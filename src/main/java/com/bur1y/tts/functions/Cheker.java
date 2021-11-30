@@ -4,6 +4,10 @@ import com.bur1y.tts.ApplicationInfo;
 import com.sun.jna.platform.win32.User32;
 
 import java.time.Duration;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class Cheker {
 
@@ -12,13 +16,19 @@ public class Cheker {
     public static void main(String[] args) throws InterruptedException {
 
         WindowInfo.updateApp();
-        for (int i = 0; i < 20; i++) {
-            addActiveTime();
-            addBackGrountTime();
-            Thread.sleep(1000);
-        }
-        System.out.println(WindowInfo.applicationInfoList);
+        getInfo();
+        System.out.println(applicationList.toArray());
+    }
 
+    public static List<Application> applicationList = new ArrayList<>();
+
+    public static void getInfo() {
+        for (ApplicationInfo ai : WindowInfo.applicationInfoList) {
+
+                Application app = new Application(ai.getNameApp());
+                applicationList.add(app);
+                System.out.println("Добавленно окно " + ai.getNameApp());
+        }
     }
 
     public static void addActiveTime() {

@@ -35,14 +35,6 @@ public class ApplicationInfo {
 
     //Setters
 
-    public void setNameApp(String nameApp) {
-        this.nameApp = nameApp;
-    }
-
-    public void setAdditionalInfo(String additionalInfo) {
-        this.additionalInfo = additionalInfo;
-    }
-
     public void setActiveTime(Duration activeTime) {
         this.activeTime = activeTime;
     }
