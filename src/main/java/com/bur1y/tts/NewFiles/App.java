@@ -5,40 +5,47 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class App {
-    /**
+
+    /** Scheme App class
+     *
+     * LvL 3 Sessions - [[Session 1], [Session 2], [Session n]]
+     * LvL 2 Session - [[LifeCycle], [Active 1], [Active n]]
+     * LvL 1 LifeCycle - [TimeLaunchApp, TimeCloseApp]
+     *       Active - [StartOfUse, EndOfUse]
+     * LvL 0 StartOfUse - [...]
+     *       EndOfUse - [...]
+     *
      * [...] - LocalDateTime
-     * [[launch app n, close app n, [[Start of use n],[End Of use n] , [Start of use n],[End Of use n]]]    ,   [... , ..., [[...],[...] , [...],[...]]]]
      */
-    private List<List<List<LocalDateTime>>> fullLifeCycle = new ArrayList<>();
-    private String name;
 
-    public App(String name, List<List<LocalDateTime>> lifeCycle){
+    private List<List<List<LocalDateTime>>> sessions = new ArrayList<>();
+    private LocalDateTime name;
+
+    public App(LocalDateTime name, List<List<LocalDateTime>> session){
         this.name = name;
-        this.fullLifeCycle.add(lifeCycle);
+        this.sessions.add(session);
     }
 
-    public App(String name){
-        this.name = name;
-    }
-
-    public String getName() {
+    public LocalDateTime getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(LocalDateTime name) {
         this.name = name;
     }
 
-    public List<List<List<LocalDateTime>>> getFullLifeCycle(){
-        return fullLifeCycle;
+    public void addSession(List<List<LocalDateTime>> session){
+        this.sessions.add(session);
+    }
+    public void addActive(List<LocalDateTime> active){
+        this.sessions.get(sessions.size() - 1).add(active);
     }
 
     @Override
     public String toString(){
         return "App{" +
                 "nameApp = '" + name + '\'' +
-                ", Full life cycle = '" + fullLifeCycle + '\'' +
+                ", Sessions = '" + sessions + '\'' +
                 '}';
     }
-
 }
