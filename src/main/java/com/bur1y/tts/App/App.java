@@ -1,4 +1,4 @@
-package com.bur1y.tts.NewFiles;
+package com.bur1y.tts.App;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -6,44 +6,49 @@ import java.util.List;
 
 public class App {
 
-    /** Scheme App class
-     *
+    /**
+     * Scheme App.App class
+     * <p>
      * LvL 3 Sessions - [[Session 1], [Session 2], [Session n]]
      * LvL 2 Session - [[LifeCycle], [Active 1], [Active n]]
      * LvL 1 LifeCycle - [TimeLaunchApp, TimeCloseApp]
-     *       Active - [StartOfUse, EndOfUse]
+     * Active - [StartOfUse, EndOfUse]
      * LvL 0 StartOfUse - [...]
-     *       EndOfUse - [...]
-     *
+     * EndOfUse - [...]
+     * <p>
      * [...] - LocalDateTime
      */
-
     private List<List<List<LocalDateTime>>> sessions = new ArrayList<>();
-    private LocalDateTime name;
+    private String name;
 
-    public App(LocalDateTime name, List<List<LocalDateTime>> session){
+    public App(String name, List<List<LocalDateTime>> session) {
         this.name = name;
         this.sessions.add(session);
     }
 
-    public LocalDateTime getName() {
+    public App(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
         return name;
     }
 
-    public void setName(LocalDateTime name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public void addSession(List<List<LocalDateTime>> session){
+    public void addSession(List<List<LocalDateTime>> session) {
         this.sessions.add(session);
     }
-    public void addActive(List<LocalDateTime> active){
+
+    public void addActive(List<LocalDateTime> active) {
         this.sessions.get(sessions.size() - 1).add(active);
     }
 
     @Override
-    public String toString(){
-        return "App{" +
+    public String toString() {
+        return "App.App{" +
                 "nameApp = '" + name + '\'' +
                 ", Sessions = '" + sessions + '\'' +
                 '}';

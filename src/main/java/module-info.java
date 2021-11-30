@@ -1,11 +1,9 @@
-module com.bur1y.tts {
-    requires javafx.controls;
-    requires javafx.fxml;
+open module com.bur1y.tts {
     requires com.sun.jna;
     requires com.sun.jna.platform;
-    requires org.kordamp.ikonli.core;
-    requires org.kordamp.ikonli.javafx;
-    requires org.kordamp.ikonli.materialdesign;
 
-    exports com.bur1y.tts.functions;
+    exports com.bur1y.tts.App;
+    exports com.bur1y.tts.Check;
+    exports com.bur1y.tts.Window;
+
 }
