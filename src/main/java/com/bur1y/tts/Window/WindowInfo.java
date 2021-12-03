@@ -5,6 +5,12 @@ import com.sun.jna.platform.DesktopWindow;
 import com.sun.jna.platform.win32.WinDef;
 import com.sun.jna.win32.StdCallLibrary;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +49,12 @@ public class WindowInfo {
             WindowApp wApp = new WindowApp(Regex.getWindowPathName(dw.getHWND()), Regex.getWindowTitleName(dw.getHWND()), "Background");
             if (wApp.getAdditionalInfo() != null || !(wApp.getName().equals("explorer"))) {
                 windowAppList.add(wApp);
+                try {
+                    saveIcon(dw);
+                } catch (Exception e) {
+                    System.out.println(e);
+                    System.out.println("Неудалось сохранить картинку для " + Regex.getWindowPathName(dw.getHWND()));
+                }
             }
         }
     }
@@ -57,4 +69,25 @@ public class WindowInfo {
         }
     }
 
+    private static void saveIcon(DesktopWindow dw) throws IOException {
+
+        File targetFile = new File(getWindowPFP(dw.getHWND()));
+        // Get metadata and create an icon
+        sun.awt.shell.ShellFolder sf =
+                sun.awt.shell.ShellFolder.getShellFolder(targetFile);
+        ImageIcon icon = new ImageIcon(sf.getIcon(true));
+
+        BufferedImage bi = new BufferedImage(
+                icon.getIconWidth(),
+                icon.getIconHeight(),
+                BufferedImage.TYPE_INT_RGB);
+        Graphics g = bi.createGraphics();
+        icon.paintIcon(null, g, 0,0);
+        g.dispose();
+
+        File outputfile = new File("src/main/java/Resources/icons/" + Regex.getWindowPathName(dw.getHWND()) + ".png");
+        ImageIO.write(bi, "png", outputfile);
+
+
+    }
 }

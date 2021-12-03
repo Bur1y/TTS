@@ -11,15 +11,6 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
 
-        App test1 = new App("test");
-        AppInfo.apps.add(test1);
-
-        while (true) {
-            WindowInfo.getLaunchedApps();
-            WindowInfo.setActiveWindow();
-
-            System.out.println(AppInfo.apps);
-            Thread.sleep(10000);
-        }
+        WindowInfo.getLaunchedApps();
     }
 }
