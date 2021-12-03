@@ -51,7 +51,6 @@ public class WindowInfo {
         for (WindowApp windowApp : windowAppList) {
             if (windowApp.getName().equals(Regex.getWindowPathName(com.sun.jna.platform.win32.User32.INSTANCE.GetForegroundWindow()))) {
                 windowApp.setCondition("Active");
-                System.out.println("Активное окно " + windowApp.getName());
             } else {
                 windowApp.setCondition("Background");
             }

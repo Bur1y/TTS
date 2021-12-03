@@ -48,7 +48,7 @@ public class App {
 
     @Override
     public String toString() {
-        return "App.App{" +
+        return "App{" +
                 "nameApp = '" + name + '\'' +
                 ", Sessions = '" + sessions + '\'' +
                 '}';
