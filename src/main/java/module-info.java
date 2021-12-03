@@ -7,6 +7,7 @@ open module com.bur1y.tts {
     requires java.sql;
     requires org.hibernate.orm.core;
     requires java.desktop;
+    requires com.calendarfx.view;
 
     exports com.bur1y.tts.App;
     exports com.bur1y.tts.Check;
